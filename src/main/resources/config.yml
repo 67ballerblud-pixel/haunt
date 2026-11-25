@@ -1,0 +1,68 @@
+# Haunt - fake players and jumpscares, visible ONLY to the haunted player.
+# /haunt reload applies changes.
+
+defaults:
+  duration-seconds: 120
+  max-duration-seconds: 1800
+  intensity: 2                 # 1 = mild, 2 = medium, 3 = extreme
+
+# Who sees the fake players. false = only the haunted player (recommended). true = everyone nearby sees them.
+visible-to-others: false
+
+# What the fake players look like:
+#   DOPPELGANGER   = the haunted player's OWN skin (very creepy)
+#   RANDOM_ONLINE  = the skin of a random other online player
+#   NAMES          = a random skin from the "names" list below
+#   MIX            = a random pick of the above each time
+skin-mode: MIX
+names:
+  - Herobrine
+  - Notch
+  - Entity_303
+  - null
+  - Steve
+
+# Show the fake player's name tag above its head (set false to leave it nameless)
+show-name-tag: true
+
+ambience:
+  night: true                  # only the haunted player sees it turn to night and start raining
+  sounds: true                 # random creepy sounds from around them
+
+scares:
+  # how often a scare happens (seconds) per intensity: [min, max]
+  interval:
+    1: [25, 45]
+    2: [10, 25]
+    3: [4, 12]
+  # relative chance of each scare. Scares that need a higher intensity are skipped below it.
+  weights:
+    stalker: 30                # stands far away and stares. Vanishes when you look at it
+    behind: 25                 # appears right behind you. Turn around and it's in your face (intensity 2+)
+    rush: 20                   # runs at you from far away and screams (intensity 2+)
+    crowd: 10                  # a ring of them closes in (intensity 2+)
+    whisper: 15                # fake chat / join messages / action bar
+    sound: 25                  # footsteps, doors, chests, breathing
+  max-ghosts: 18
+  rush-speed: 1.5              # blocks per 2 ticks
+  jumpscare:
+    cooldown-seconds: 6
+    title: "&4&l\u2620"        # shown for a moment on a jumpscare ("" = none)
+    darkness: true             # brief darkness pulse (intensity 2+)
+    blindness: false           # brief blindness flash (intensity 3 only, off by default)
+    hurt-flash: false          # the red "hurt" camera tilt (no damage)
+
+messages:                      # sent privately to the haunted player
+  chat:
+    - "<Herobrine> i see you"
+    - "<Entity_303> behind you"
+    - "<null> dont turn around"
+    - "<Notch> you shouldn't be here"
+    - "<???> found you"
+  action-bar:
+    - "&8You feel like you're being watched..."
+    - "&8Did you hear that?"
+    - "&8Something is standing very close."
+  fake-join:
+    - "Herobrine joined the game"
+    - "null joined the game"
